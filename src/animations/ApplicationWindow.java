@@ -24,7 +24,7 @@ public class ApplicationWindow extends JFrame {
 	    //          a toolbar and an animation window.
 
 	    // Title bar
-	    super("Swing Demonstration Program");
+	    super("CezmiGame Prototype Program");
 
 	    // respond to the window system asking us to quit
 	    addWindowListener(new WindowAdapter() {
@@ -45,7 +45,7 @@ public class ApplicationWindow extends JFrame {
 	    //Lay out the content pane.
 	    JPanel contentPane = new JPanel();
 	    contentPane.setLayout(new BorderLayout());
-	    contentPane.setPreferredSize(new Dimension(510, 530));
+	    contentPane.setPreferredSize(new Dimension(610, 630));
 	    contentPane.add(toolBar, BorderLayout.NORTH);
 	    contentPane.add(scrollPane, BorderLayout.CENTER);
 	    setContentPane(contentPane);

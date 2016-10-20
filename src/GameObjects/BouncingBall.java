@@ -1,6 +1,7 @@
+package GameObjects;
 import java.awt.*;
 
-class BouncingBall {
+public class BouncingBall {
   // Overview: A BouncingBall is a mutable data type.  It simulates a
   // rubber ball bouncing inside a two dimensional box.  It also
   // provides methods that are useful for creating animations of the
@@ -8,8 +9,8 @@ class BouncingBall {
 
   private int x = (int)((Math.random() * 100.0) + 100.0);
   private int y = (int)((Math.random() * 100.0) + 100.0);
-  private int vx = (int)((Math.random() * 10.0) + 10.0);
-  private int vy = (int)((Math.random() * 10.0) + 10.0);
+  private int vx = /*(int)((Math.random() * 10.0) + 10.0);*/ 5;
+  private int vy = /* (int)((Math.random() * 10.0) + 10.0); */ 5;
   private int radius = 6;
   private Color color = new Color(255, 0, 0);
 
@@ -19,11 +20,12 @@ class BouncingBall {
     // walls cause the ball to change direction.
     x += vx;
     if (x <= radius) { x = radius; vx = -vx; }
-    if (x >= 500-radius) { x = 500-radius; vx = -vx; }
+    if (x >= 600-radius) { x = 600-radius; vx = -vx; }
  
     y += vy;
     if (y <= radius) { y = radius; vy = -vy; }
-    if (y >= 500-radius) { y = 500-radius; vy = -vy; }
+    if (y >= 600-radius) { y = 600-radius; vy = -vy; }
+    
   }
 
   public void randomBump() {

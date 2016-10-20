@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import GameObjects.Game;
+
 public class AnimationWindow extends JPanel {
 	  // overview: an AnimationWindow is an area on the screen in which a
 	  // bouncing ball animation occurs.  AnimationWindows have two modes:
@@ -24,11 +26,10 @@ public class AnimationWindow extends JPanel {
 
 	    // this only initializes the timer, we actually start and stop the
 	    // timer in the setMode() method
-	    eventListener = new AnimationEventListener();
+	    eventListener = new AnimationEventListener(this);
 	    // The first parameter is how often (in milliseconds) the timer
-	    // should call us back.  50 milliseconds = 20 frames/second
-	    timer = new Timer(50, eventListener);
-
+	    // should call us back.  20 milliseconds = 50 frames/second
+	    timer = new Timer(20, eventListener);
 	    mode = false;
 	  }
 
@@ -42,9 +43,8 @@ public class AnimationWindow extends JPanel {
 
 	    // first repaint the proper background color (controlled by
 	    // the windowing system)
-	    //super.paint(g);
-
-	    //ball.paint(g);
+	    super.paint(g);
+	    Game.ball.paint(g);
 	  }
 
 	  public void setMode(boolean m) {
