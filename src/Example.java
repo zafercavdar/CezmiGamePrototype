@@ -1,9 +1,4 @@
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-
-import java.util.*;
-import javax.swing.Timer;
 
 class BouncingBall {
   // Overview: A BouncingBall is a mutable data type.  It simulates a

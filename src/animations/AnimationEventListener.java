@@ -1,6 +1,6 @@
 package animations;
 
-import java.awt.Rectangle;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -26,7 +26,8 @@ implements MouseMotionListener, KeyListener, ActionListener
   public void mouseClicked(MouseEvent e) {
     // modifes: the ball that this listener owns
     // effects: causes the ball to be bumped in a random direction
-    ball.randomBump();
+    
+	  // ball.randomBump();
   }
 
   // Here's the MouseMotionListener interface
@@ -38,12 +39,12 @@ implements MouseMotionListener, KeyListener, ActionListener
     // modifes: the ball that this listener owns
     // effects: causes the ball to be bumped in a random direction but
     //          only if one of the keys A-J is pressed.
-    int keynum = e.getKeyCode();
+    /*int keynum = e.getKeyCode();
 
     if ((keynum >= 65) && (keynum <= 74)) {
       System.out.println("keypress " + e.getKeyCode());
       ball.randomBump();
-    }
+    } */
   }
   
   public void keyReleased(KeyEvent e) { }
@@ -55,19 +56,21 @@ implements MouseMotionListener, KeyListener, ActionListener
     // effects: causes the ball to move and the window to be updated
     //          to show the new position of the ball.
 
-    Rectangle oldPos = ball.boundingBox();
+    // Rectangle oldPos = ball.boundingBox();
 
-    ball.move();              // make changes to the logical animation state
+    // ball.move();              // make changes to the logical animation state
     
-    Rectangle repaintArea = oldPos.union(ball.boundingBox());
+    // Rectangle repaintArea = oldPos.union(ball.boundingBox());
 
     // Have Swing tell the AnimationWindow to run its paint()
     // method.  One could also call repaint(), but this would
     // repaint the entire window as opposed to only the portion that
     // has changed.
-    repaint(repaintArea.x,
+    
+    /*repaint(repaintArea.x,
             repaintArea.y,
             repaintArea.width,
             repaintArea.height);
+            */
   }
 }
