@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<board>
+ <ball xVelocity="-2.1" yVelocity="-3.5" /> 
+ <gizmos>
+  <takoz  x="0"  y="2" />
+  <takoz   x="5"  y="7" />
+  <takoz   x="3"  y="1" />
+  <takoz   x="5"  y="9" />
+
+</board>

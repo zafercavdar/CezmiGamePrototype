@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:complexType name="ball">
+ <xs:attribute name="xVelocity" type="xs:float" use="required" />
+ <xs:attribute name="yVelocity" type="xs:float" use="required" />
+ <xs:attribute name="x" type="xs:float"  />
+ <xs:attribute name="y" type="xs:float"  />
+
+ <xs:anyAttribute />
+</xs:complexType>
+
+<xs:complexType name="cezmi">
+ <xs:attribute name="x" type="xs:float" use="required" />
+ <xs:attribute name="score" type="xs:float" use="required" />
+
+ <xs:anyAttribute />
+</xs:complexType>
+
+<xs:complexType name="takoz"> 
+ <xs:attribute name="x" type="xs:integer" use="required" />
+ <xs:attribute name="y" type="xs:integer" use="required" />
+ <xs:anyAttribute />
+</xs:complexType>
+
+
+<xs:group name="allGizmos">
+  <xs:choice>
+   <xs:element name="takoz" type="takoz" />
+  </xs:choice>
+</xs:group>
+
+
+<xs:element name="board">
+ <xs:complexType>
+  <xs:sequence>
+   <xs:element name="ball" type="ball" minOccurs="0" maxOccurs="unbounded" />
+   <xs:element name="cezmi" type="cezmi" minOccurs="0" maxOccurs="1" />
+
+   <xs:element name="gizmos">
+    <xs:complexType>
+     <xs:sequence>
+      <xs:group ref="allGizmos" minOccurs="0" maxOccurs="unbounded" />
+     </xs:sequence>
+     <xs:anyAttribute />
+    </xs:complexType>
+   </xs:element>
+
+   <xs:any minOccurs="0" maxOccurs="unbounded" />
+  </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+</xs:schema>
