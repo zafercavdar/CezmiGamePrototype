@@ -14,13 +14,20 @@ public class Game {
 	
 	public static void main(String[] args) {
 		
-		String loc = "src\\xmls\\CezmiPrototype3.xml";
-		XMLParser parser = new XMLParser(loc);
-		parser.parseXMLFile();
+		boolean valid = false;
 		
-	    ApplicationWindow frame = new ApplicationWindow();
-	    // the following code realizes the top level application window
-	    frame.pack();
-	    frame.setVisible(true);
+		while (!valid){
+			// User selects new file
+			//String loc = "src\\xmls\\CezmiPrototype3.xml";
+			XMLParser parser = new XMLParser(loc);
+			valid = parser.validateXMLFile();
+			if (valid){
+				parser.parseXMLFile();
+				ApplicationWindow frame = new ApplicationWindow();
+			    // the following code realizes the top level application window
+			    frame.pack();
+			    frame.setVisible(true);
+			}
+		}
 	  }
 }
