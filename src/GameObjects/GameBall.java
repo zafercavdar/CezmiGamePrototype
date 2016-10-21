@@ -6,13 +6,22 @@ public class GameBall {
 	private double y;
 	private double xVelocity;
 	private double yVelocity;
+	
 	private double radius = 0.5;
 	private Color color = new Color(255, 0, 0);
 
 	
-	public GameBall(double x, double y, double xVelocity, double yVelocity){
-		this.x = x;
-		this.y = y;
+	public GameBall(){
+		this.x = 10;
+		this.y = 19;
+		this.xVelocity = (Math.random() * 10.0) -5;
+		this.yVelocity = -(Math.random() * 5);
+	}
+	
+	public GameBall(double xVelocity, double yVelocity){
+		this.x = 10;
+		this.y = 19;
+		
 		this.xVelocity = xVelocity;
 		this.yVelocity = yVelocity;
 	}
