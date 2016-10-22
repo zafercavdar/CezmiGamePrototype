@@ -1,11 +1,13 @@
 package animations;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import game.Game;
+import game.GameTakoz;
 
 public class AnimationWindow extends JPanel {
 	// overview: an AnimationWindow is an area on the screen in which a
@@ -23,6 +25,9 @@ public class AnimationWindow extends JPanel {
 		// effects: initializes this to be in the off mode.
 
 		super();                    // do the standard JPanel setup stuff
+		this.setOpaque(true);
+		this.setBackground(Color.BLACK);
+		
 		//ball = new BouncingBall();
 
 		// this only initializes the timer, we actually start and stop the
@@ -46,6 +51,10 @@ public class AnimationWindow extends JPanel {
 		// the windowing system)
 		super.paint(g);
 		Game.ball.paint(g);
+		for (GameTakoz takoz :Game.takozlar){
+			takoz.paint(g);
+		}
+		Game.cezmi.paint(g);
 	}
 
 	public void setMode(boolean m) {

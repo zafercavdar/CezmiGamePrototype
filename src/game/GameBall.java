@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
 
 import animations.AnimationWindow;
+import animations.ApplicationWindow;
 
 public class GameBall {
 	private double x = 9.5;
@@ -14,7 +15,7 @@ public class GameBall {
 	private double radius = 0.25;
 	private Color color = new Color(128, 0, 128);
 	private int screenSize = 20;
-	private int L = 30;
+	private int L = ApplicationWindow.screenSize / 20;
 
 	public GameBall(){
 		//this.xVelocity = (Math.random() * 4) -2;
@@ -57,7 +58,7 @@ public class GameBall {
 			y += yVelocity/rate;
 		}
 		
-		System.out.println(Math.max(Math.abs(xVelocity), Math.abs(yVelocity))/rate);
+		//System.out.println(Math.max(Math.abs(xVelocity), Math.abs(yVelocity))/rate);
 	}
 
 	public void paint(Graphics g) {
@@ -74,7 +75,7 @@ public class GameBall {
 		// screen this is a very important performance optimization
 		if (clipRect.intersects(this.boundingBox())) {
 			g.setColor(color);
-			g.fillOval((int) ((x-radius)* L), (int) ((y-radius)*L), (int) ((radius+radius)*L), (int) ((radius+radius)*L));
+			g.fillOval((int) (x* L), (int) (y*L), (int) ((2*radius)*L), (int) ((2*radius)*L));
 		}
 	}
 
@@ -84,7 +85,7 @@ public class GameBall {
 
 		// a Rectangle is the x,y for the upper left corner and then the
 		// width and height
-		return new Rectangle((int)((x-radius)*L), (int) ((y-radius)*L), (int) ((radius+radius)*L+1), (int)((radius+radius)*L+1));
+		return new Rectangle((int)((x)*L), (int) ((y)*L), (int) ((2*radius)*L+1), (int)((2*radius)*L+1));
 	}
 
 	public double getX() {

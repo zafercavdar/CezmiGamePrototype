@@ -1,6 +1,7 @@
 package animations;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +18,7 @@ public class ApplicationWindow extends JFrame {
 	// overview: An ApplicationWindow is a top level program window that
 	// contains a toolbar and an animation window.
 
-
+	public static int screenSize = 600;
 
 	protected AnimationWindow animationWindow;
 
@@ -27,7 +28,7 @@ public class ApplicationWindow extends JFrame {
 
 		// Title bar
 		super("CezmiGame Prototype Program");
-
+		
 		// respond to the window system asking us to quit
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -47,7 +48,8 @@ public class ApplicationWindow extends JFrame {
 		//Lay out the content pane.
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout());
-		contentPane.setPreferredSize(new Dimension(610, 630));
+		contentPane.setPreferredSize(new Dimension(screenSize+10, screenSize+30));
+		
 		contentPane.add(toolBar, BorderLayout.NORTH);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		setContentPane(contentPane);
@@ -78,6 +80,24 @@ public class ApplicationWindow extends JFrame {
 			}
 		});
 		toolBar.add(button);
+		
+		button = new JButton("Load XML");
+		button.setToolTipText("Load XML File");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.exit(0);
+			}
+		});
+		toolBar.add(button);
+		
+		button = new JButton("Save as XML");
+		button.setToolTipText("Save as XML File");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//System.exit(0);
+			}
+		});
+		toolBar.add(button);
 
 		button = new JButton("Quit");
 		button.setToolTipText("Quit the program");
@@ -87,6 +107,8 @@ public class ApplicationWindow extends JFrame {
 			}
 		});
 		toolBar.add(button);
+		
+		
 	}
 }
 

@@ -38,10 +38,7 @@ implements MouseMotionListener, KeyListener, ActionListener
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		// modifes: the ball that this listener owns
-		// effects: causes the ball to be bumped in a random direction
-
-		// ball.randomBump();
+		
 	}
 
 	// Here's the MouseMotionListener interface
@@ -50,15 +47,14 @@ implements MouseMotionListener, KeyListener, ActionListener
 
 	// Here's the KeyListener interface
 	public void keyPressed(KeyEvent e) {
-		// modifes: the ball that this listener owns
-		// effects: causes the ball to be bumped in a random direction but
-		//          only if one of the keys A-J is pressed.
-		/*int keynum = e.getKeyCode();
+		
+		int keynum = e.getKeyCode();
 
-    if ((keynum >= 65) && (keynum <= 74)) {
-      System.out.println("keypress " + e.getKeyCode());
-      ball.randomBump();
-    } */
+		if (keynum == 39){
+			Game.cezmi.move(1);
+		} else if (keynum == 37){
+			Game.cezmi.move(0);
+		}
 	}
 
 	public void keyReleased(KeyEvent e) { }
@@ -70,11 +66,17 @@ implements MouseMotionListener, KeyListener, ActionListener
 		// effects: causes the ball to move and the window to be updated
 		//          to show the new position of the ball.
 
-		Rectangle oldPos = Game.ball.boundingBox();
+		Rectangle oldPosBall = Game.ball.boundingBox();
 
 		Game.ball.move();              // make changes to the logical animation state
-
-		Rectangle repaintArea = oldPos.union(Game.ball.boundingBox());
+		
+		Rectangle oldPosCezmi = Game.cezmi.prevBoundingbox;
+		Rectangle posCezmi = Game.cezmi.boundingBox();
+		
+		Rectangle repaintArea2 = posCezmi.union(oldPosCezmi);
+		Rectangle repaintArea = oldPosBall.union(Game.ball.boundingBox());
+		
+		repaintArea = repaintArea.union(repaintArea2);
 
 		// Have Swing tell the AnimationWindow to run its paint()
 		// method.  One could also call repaint(), but this would
