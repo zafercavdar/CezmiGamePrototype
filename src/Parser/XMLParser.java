@@ -1,11 +1,8 @@
-package Parser;
+package parser;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
-import GameObjects.Cezmi;
-import GameObjects.Game;
-import GameObjects.GameBall;
-import GameObjects.GameTakoz;
+import game.*;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.*;

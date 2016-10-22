@@ -13,7 +13,7 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
-import GameObjects.Game;
+import game.Game;
 
 public class AnimationEventListener extends MouseAdapter
 implements MouseMotionListener, KeyListener, ActionListener

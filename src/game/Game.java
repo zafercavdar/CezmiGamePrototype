@@ -1,10 +1,10 @@
-package GameObjects;
+package game;
 import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 
-import Parser.XMLParser;
+import parser.XMLParser;
 import animations.ApplicationWindow;
 import animations.AnimationWindow;
 import animations.AnimationEventListener;

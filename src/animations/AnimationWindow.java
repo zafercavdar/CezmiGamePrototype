@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import GameObjects.Game;
+import game.Game;
 
 public class AnimationWindow extends JPanel {
 	  // overview: an AnimationWindow is an area on the screen in which a

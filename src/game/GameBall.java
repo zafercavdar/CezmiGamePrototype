@@ -1,4 +1,4 @@
-package GameObjects;
+package game;
 import java.awt.Color;
 
 public class GameBall {
