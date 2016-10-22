@@ -12,7 +12,7 @@ import animations.AnimationEventListener;
 // This filter contains some code from:
 // http://stackoverflow.com/questions/1246857/using-a-filedialog-to-choose-a-file-of-a-certain-extension
 
-class CustomFilter extends javax.swing.filechooser.FileFilter {
+class XMLFilter extends javax.swing.filechooser.FileFilter {
     public boolean accept(File file) {
         String filename = file.getName();
         return filename.endsWith(".xml");
@@ -20,6 +20,20 @@ class CustomFilter extends javax.swing.filechooser.FileFilter {
     public String getDescription() {
         return "*.xml";
     }
+}
+
+@SuppressWarnings("serial")
+class XMLFileChooser extends JFileChooser{
+	
+	public XMLFileChooser(){
+		File defaultLoc = new File("src\\xmls");
+		this.setCurrentDirectory(defaultLoc);
+		this.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		this.addChoosableFileFilter(new XMLFilter());
+		this.setAcceptAllFileFilterUsed(false);
+		
+	}
+	
 }
 
 public class Game {
@@ -34,14 +48,9 @@ public class Game {
 		
 		while (!valid){
 			// User selects new file
-			final JFileChooser fc = new JFileChooser();
-			File defaultLoc = new File("src\\xmls");
-			fc.setCurrentDirectory(defaultLoc);
-			fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-			fc.addChoosableFileFilter(new CustomFilter());
-			fc.setAcceptAllFileFilterUsed(false);
-			
+			final XMLFileChooser fc = new XMLFileChooser();
 			fc.showOpenDialog(null);
+			
 			String loc = fc.getSelectedFile().getAbsolutePath();
 			System.out.println(loc);
 			
