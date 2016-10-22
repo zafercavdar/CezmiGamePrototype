@@ -31,7 +31,7 @@ implements MouseMotionListener, KeyListener, ActionListener
 	// for this example we only need to override mouseClicked
 
 	private JPanel animationWindows = null;
-	
+
 	public AnimationEventListener(JPanel animationWindows){
 		super();
 		this.animationWindows = animationWindows;	

@@ -13,8 +13,9 @@ public class GameBall {
 	private int L = 30;
 
 	public GameBall(){
-		this.xVelocity = (Math.random() * 10.0) -5;
-		this.yVelocity = -(Math.random() * 5);
+		this.xVelocity = (Math.random() * 5.0) -2.5;
+		this.yVelocity = -(Math.random() * 2.5);
+		System.out.println(xVelocity + " , " + yVelocity);
 	}
 
 	public GameBall(double xVelocity, double yVelocity){
@@ -63,7 +64,7 @@ public class GameBall {
 		// screen this is a very important performance optimization
 		if (clipRect.intersects(this.boundingBox())) {
 			g.setColor(color);
-			g.fillOval((int) (x-radius)* L, (int) (y-radius)*L, (int) (radius+radius)*L, (int) (radius+radius)*L);
+			g.fillOval((int) ((x-radius)* L), (int) ((y-radius)*L), (int) ((radius+radius)*L), (int) ((radius+radius)*L));
 		}
 	}
 
@@ -73,7 +74,7 @@ public class GameBall {
 
 		// a Rectangle is the x,y for the upper left corner and then the
 		// width and height
-		return new Rectangle((int)(x-radius)*L, (int)(y-radius)*L, (int) (radius+radius)*L+1, (int)(radius+radius)*L+1);
+		return new Rectangle((int)((x-radius)*L), (int) ((y-radius)*L), (int) ((radius+radius)*L+1), (int)((radius+radius)*L+1));
 	}
 
 	public double getX() {
