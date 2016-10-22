@@ -1,6 +1,10 @@
 package game;
 import java.awt.*;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
+
+import animations.AnimationWindow;
+
 public class GameBall {
 	private double x = 9.5;
 	private double y = 19.5;
@@ -13,8 +17,10 @@ public class GameBall {
 	private int L = 30;
 
 	public GameBall(){
-		this.xVelocity = (Math.random() * 5.0) -2.5;
-		this.yVelocity = -(Math.random() * 2.5);
+		//this.xVelocity = (Math.random() * 4) -2;
+		//this.yVelocity = -(Math.random() * 2);
+		this.xVelocity = 5;
+		this.yVelocity = 3;
 		System.out.println(xVelocity + " , " + yVelocity);
 	}
 
@@ -26,28 +32,32 @@ public class GameBall {
 
 	public void move(){
 
-		if (x + xVelocity <= radius) {
+		double rate = AnimationWindow.frameRate;
+		
+		if (x + xVelocity/rate <= radius) {
 			x = radius; 
 			xVelocity = -xVelocity; 
 		}
-		else if (x + xVelocity >= screenSize-radius) {
+		else if (x + xVelocity/rate >= screenSize-radius) {
 			x = screenSize-radius; 
 			xVelocity = -xVelocity; 
 		} else {
-			x += xVelocity;
+			x += xVelocity / rate;
 		}
 
-		if (y + yVelocity <= radius) {
+		if (y + yVelocity/rate <= radius) {
 			y = radius; 
 			yVelocity = -yVelocity; 
 		}
 
-		else if (y + yVelocity >= screenSize - radius) { 
+		else if (y + yVelocity/rate >= screenSize - radius) { 
 			y = screenSize-radius; 
 			yVelocity *= -1; 
 		} else {
-			y += yVelocity;
+			y += yVelocity/rate;
 		}
+		
+		System.out.println(Math.max(Math.abs(xVelocity), Math.abs(yVelocity))/rate);
 	}
 
 	public void paint(Graphics g) {

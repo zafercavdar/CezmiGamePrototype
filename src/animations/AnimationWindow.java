@@ -17,6 +17,7 @@ public class AnimationWindow extends JPanel {
 	//private BouncingBall ball;
 	private Timer timer;
 	private boolean mode;
+	public static int frameRate = 50;
 
 	public AnimationWindow() {
 		// effects: initializes this to be in the off mode.
@@ -28,8 +29,8 @@ public class AnimationWindow extends JPanel {
 		// timer in the setMode() method
 		eventListener = new AnimationEventListener(this);
 		// The first parameter is how often (in milliseconds) the timer
-		// should call us back.  20 milliseconds = 50 frames/second
-		timer = new Timer(20, eventListener);
+		// should call us back.  50 milliseconds = 20 frames/second
+		timer = new Timer(1000 / frameRate, eventListener);
 		mode = false;
 	}
 
