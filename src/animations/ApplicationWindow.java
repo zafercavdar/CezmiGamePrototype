@@ -14,77 +14,79 @@ import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 
 public class ApplicationWindow extends JFrame {
-	  // overview: An ApplicationWindow is a top level program window that
-	  // contains a toolbar and an animation window.
+	// overview: An ApplicationWindow is a top level program window that
+	// contains a toolbar and an animation window.
 
-	  protected AnimationWindow animationWindow;
 
-	  public ApplicationWindow() {
-	    // effects: Initializes the application window so that it contains
-	    //          a toolbar and an animation window.
 
-	    // Title bar
-	    super("CezmiGame Prototype Program");
+	protected AnimationWindow animationWindow;
 
-	    // respond to the window system asking us to quit
-	    addWindowListener(new WindowAdapter() {
-	      public void windowClosing(WindowEvent e) {
-	        System.exit(0);
-	      }
-	    });
+	public ApplicationWindow() {
+		// effects: Initializes the application window so that it contains
+		//          a toolbar and an animation window.
 
-	    //Create the toolbar.
-	    JToolBar toolBar = new JToolBar();
-	    addButtons(toolBar);
+		// Title bar
+		super("CezmiGame Prototype Program");
 
-	    //Create the animation area used for output.
-	    animationWindow = new AnimationWindow();
-	    // Put it in a scrollPane, (this makes a border)
-	    JScrollPane scrollPane = new JScrollPane(animationWindow);
+		// respond to the window system asking us to quit
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
 
-	    //Lay out the content pane.
-	    JPanel contentPane = new JPanel();
-	    contentPane.setLayout(new BorderLayout());
-	    contentPane.setPreferredSize(new Dimension(610, 630));
-	    contentPane.add(toolBar, BorderLayout.NORTH);
-	    contentPane.add(scrollPane, BorderLayout.CENTER);
-	    setContentPane(contentPane);
-	  }
+		//Create the toolbar.
+		JToolBar toolBar = new JToolBar();
+		addButtons(toolBar);
 
-	  protected void addButtons(JToolBar toolBar) {
-	    // modifies: toolBar
-	    // effects: adds Run, Stop and Quit buttons to toolBar
+		//Create the animation area used for output.
+		animationWindow = new AnimationWindow();
+		// Put it in a scrollPane, (this makes a border)
+		JScrollPane scrollPane = new JScrollPane(animationWindow);
 
-	    JButton button = null;
-
-	    button = new JButton("Run");
-	    button.setToolTipText("Start the animation");
-	    // when this button is pushed it calls animationWindow.setMode(true)
-	    button.addActionListener(new ActionListener() {
-	      public void actionPerformed(ActionEvent e) {
-	        animationWindow.setMode(true);
-	      }
-	    });
-	    toolBar.add(button);
-
-	    button = new JButton("Stop");
-	    button.setToolTipText("Stop the animation");
-	    // when this button is pushed it calls animationWindow.setMode(false)
-	    button.addActionListener(new ActionListener() {
-	      public void actionPerformed(ActionEvent e) {
-	        animationWindow.setMode(false);
-	      }
-	    });
-	    toolBar.add(button);
-
-	    button = new JButton("Quit");
-	    button.setToolTipText("Quit the program");
-	    button.addActionListener(new ActionListener() {
-	      public void actionPerformed(ActionEvent e) {
-	        System.exit(0);
-	      }
-	    });
-	    toolBar.add(button);
-	  }
+		//Lay out the content pane.
+		JPanel contentPane = new JPanel();
+		contentPane.setLayout(new BorderLayout());
+		contentPane.setPreferredSize(new Dimension(610, 630));
+		contentPane.add(toolBar, BorderLayout.NORTH);
+		contentPane.add(scrollPane, BorderLayout.CENTER);
+		setContentPane(contentPane);
 	}
+
+	protected void addButtons(JToolBar toolBar) {
+		// modifies: toolBar
+		// effects: adds Run, Stop and Quit buttons to toolBar
+
+		JButton button = null;
+
+		button = new JButton("Run");
+		button.setToolTipText("Start the animation");
+		// when this button is pushed it calls animationWindow.setMode(true)
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				animationWindow.setMode(true);
+			}
+		});
+		toolBar.add(button);
+
+		button = new JButton("Stop");
+		button.setToolTipText("Stop the animation");
+		// when this button is pushed it calls animationWindow.setMode(false)
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				animationWindow.setMode(false);
+			}
+		});
+		toolBar.add(button);
+
+		button = new JButton("Quit");
+		button.setToolTipText("Quit the program");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		toolBar.add(button);
+	}
+}
 
