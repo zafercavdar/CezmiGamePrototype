@@ -7,21 +7,22 @@ import animations.AnimationWindow;
 import animations.ApplicationWindow;
 
 public class GameBall {
-	private double x = 9.5;
-	private double y = 19.5;
+	private int screenSize = 20;
+	private double radius = 0.25;
+	
+	private double x = screenSize/2 - 2*radius;
+	private double y = screenSize - 2*radius;
 	private double xVelocity;
 	private double yVelocity;
 
-	private double radius = 0.25;
+	
 	private Color color = new Color(128, 0, 128);
-	private int screenSize = 20;
+	
 	private int L = ApplicationWindow.screenSize / 20;
 
 	public GameBall(){
-		//this.xVelocity = (Math.random() * 4) -2;
-		//this.yVelocity = -(Math.random() * 2);
-		this.xVelocity = 5;
-		this.yVelocity = 3;
+		this.xVelocity = (Math.random() * 12) - 6;
+		this.yVelocity = -(Math.random() * 6);
 		System.out.println(xVelocity + " , " + yVelocity);
 	}
 
@@ -35,30 +36,87 @@ public class GameBall {
 
 		double rate = AnimationWindow.frameRate;
 		
-		if (x + xVelocity/rate <= radius) {
-			x = radius; 
+		checkTakozCollision();
+		checkCezmiCollision();
+		
+		if (x + xVelocity/rate <= 0) {
+			x = 0; 
 			xVelocity = -xVelocity; 
 		}
-		else if (x + xVelocity/rate >= screenSize-radius) {
-			x = screenSize-radius; 
+		else if (x + xVelocity/rate >= screenSize-2*radius) {
+			x = screenSize-2*radius; 
 			xVelocity = -xVelocity; 
 		} else {
 			x += xVelocity / rate;
 		}
 
-		if (y + yVelocity/rate <= radius) {
-			y = radius; 
+		if (y + yVelocity/rate <= 0) {
+			y = 0; 
 			yVelocity = -yVelocity; 
 		}
 
-		else if (y + yVelocity/rate >= screenSize - radius) { 
-			y = screenSize-radius; 
+		else if (y + yVelocity/rate >= screenSize - 2*radius) { 
+			y = screenSize-2*radius; 
 			yVelocity *= -1; 
 		} else {
 			y += yVelocity/rate;
 		}
 		
 		//System.out.println(Math.max(Math.abs(xVelocity), Math.abs(yVelocity))/rate);
+	}
+	
+	// This code contains some code from: 
+	// http://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
+	
+	private double clamp(double value, double min, double max){
+		if (value <= min){
+			return min;
+		} else if (value >= max){
+			return max;
+		} else{
+			return value;
+		}
+	}
+	
+	public void checkTakozCollision(){
+		double sensitivity = 0.05;
+		
+		for (GameTakoz takoz: Game.takozlar){
+			double takozLeftX = takoz.getX();
+			double takozRightX = takoz.getX() + takoz.getSize();
+			double takozTopY = takoz.getY();
+			double takozBottomY = takoz.getY() + takoz.getSize();
+			
+			double closestX = clamp(this.x + radius, takozLeftX, takozRightX);
+			double closestY = clamp(this.y + radius, takozTopY, takozBottomY);
+			double distanceX = this.x + radius - closestX;
+			double distanceY = this.y + radius - closestY;
+			double distance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
+			if (distance <= radius){
+				if (takozRightX - this.x < sensitivity){
+					System.out.println("Saðda");
+					xVelocity *= -1;
+				} else if ((this.x + 2*radius) - takozLeftX < sensitivity){
+					System.out.println("Solda");
+					xVelocity *= -1;
+				} else if ((this.y + 2*radius) - takozTopY < sensitivity){
+					System.out.println("Üstte");
+					yVelocity *= -1;
+				} else if (takozBottomY - this.y < sensitivity){
+					System.out.println("Altta");
+					yVelocity *= -1;
+				} else {
+					System.out.println("takoz collision");
+				}
+			}
+		}
+	}
+	
+	public  void checkCezmiCollision(){
+		if (Game.cezmi.intersects(x + radius, y + radius, radius)){
+			xVelocity *= -1;
+			yVelocity *= -1;
+		}
 	}
 
 	public void paint(Graphics g) {

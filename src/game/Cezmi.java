@@ -21,7 +21,6 @@ public class Cezmi {
 	
 	public Cezmi(){
 		super();
-		
 		//random olmasý lazým
 		this.x = 12;
 	}
@@ -63,6 +62,11 @@ public class Cezmi {
 		// a Rectangle is the x,y for the upper left corner and then the
 		// width and height
 		return new Rectangle((int)((x)*L), (int) ((y)*L), (int) ((2*radius)*L+1), (int)((2*radius)*L+1));
+	}
+	
+	public boolean intersects(double x, double y, double ballRadius){
+		double distance = Math.sqrt((this.x + radius - x)*(this.x + radius - x) + (this.y + radius - y)*(this.y + radius - y));
+		return (distance <= ballRadius + radius);
 	}
 
 	public int getScore() {

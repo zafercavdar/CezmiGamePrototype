@@ -86,7 +86,9 @@ public class XMLParser {
 		return !isFailed;
 	}
 
-	public void parseXMLFile(){
+	public boolean parseXMLFile(){
+
+		boolean result = true;
 
 		if (validated && !isFailed){
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();;
@@ -108,7 +110,7 @@ public class XMLParser {
 			}
 
 			doc.getDocumentElement().normalize();
-			System.out.println("Root element : " + doc.getDocumentElement().getNodeName());
+			//System.out.println("Root element : " + doc.getDocumentElement().getNodeName());
 
 
 			NodeList balls = doc.getElementsByTagName("ball");
@@ -139,8 +141,14 @@ public class XMLParser {
 				Element eCezmi = (Element) cezmi;
 				int x = Integer.parseInt(eCezmi.getAttribute("x"));
 				int score = Integer.parseInt(eCezmi.getAttribute("score"));
-				Cezmi gameCezmi = new Cezmi(x,score);
-				Game.cezmi = gameCezmi;
+
+				if (x < 0 || x > 18){
+					result = false;
+					System.err.println("Invalid CEZMI Position");
+				} else {
+					Cezmi gameCezmi = new Cezmi(x,score);
+					Game.cezmi = gameCezmi;
+				}
 
 			} else if (cezmis.getLength() == 0){
 				System.out.println("No Cezmi found in XML file.");
@@ -149,6 +157,7 @@ public class XMLParser {
 
 			} else {
 				System.out.println("Multiple cezmis?");
+				result = false;
 				isFailed = true;
 			}
 
@@ -157,19 +166,28 @@ public class XMLParser {
 			Element eGizmo = (Element) gizmo;
 			NodeList takozList = eGizmo.getElementsByTagName(Constants.TAKOZ.XMLTag);
 
-			System.out.println("takoz sayýsý: " + takozList.getLength());
+			Game.takozlar.clear();
+
 			for (int i = 0; i < takozList.getLength(); i++){
 				Node takoz = takozList.item(i);
 				Element element = (Element) takoz;
 				int x = Integer.parseInt(element.getAttribute("x"));
 				int y = Integer.parseInt(element.getAttribute("y"));
-				GameTakoz gameTakoz = new GameTakoz(x, y);
-				Game.takozlar.add(gameTakoz);
-				System.out.println("x: " + x + " y: " + y );
+
+				if (x< 0 || x > 19 || y < 0 || y > 19){
+					result = false;
+					System.err.println("Invalid Takoz Position Error");
+				} else {
+					GameTakoz gameTakoz = new GameTakoz(x, y);
+					Game.takozlar.add(gameTakoz);
+					//System.out.println("x: " + x + " y: " + y );
+				}
 			}
 		} else {
 			System.out.println("Document is not validated or validation is failed.");
 		}
+
+		return result;
 	}
 
 	public boolean isSuccessfull(){

@@ -37,6 +37,10 @@ public class GameTakoz {
 		}
 	}
 
+	public int getSize() {
+		return size;
+	}
+
 	public Rectangle boundingBox() {
 		// effect: Returns the smallest rectangle that completely covers the
 		//         current position of the ball.

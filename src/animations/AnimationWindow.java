@@ -19,7 +19,7 @@ public class AnimationWindow extends JPanel {
 	//private BouncingBall ball;
 	private Timer timer;
 	private boolean mode;
-	public static int frameRate = 50;
+	public static int frameRate = 100;
 
 	public AnimationWindow() {
 		// effects: initializes this to be in the off mode.
@@ -27,7 +27,7 @@ public class AnimationWindow extends JPanel {
 		super();                    // do the standard JPanel setup stuff
 		this.setOpaque(true);
 		this.setBackground(Color.BLACK);
-		
+
 		//ball = new BouncingBall();
 
 		// this only initializes the timer, we actually start and stop the
@@ -55,6 +55,7 @@ public class AnimationWindow extends JPanel {
 			takoz.paint(g);
 		}
 		Game.cezmi.paint(g);
+
 	}
 
 	public void setMode(boolean m) {

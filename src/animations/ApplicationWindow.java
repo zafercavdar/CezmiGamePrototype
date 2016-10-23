@@ -14,6 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 
+import parser.XMLFileChooser;
+import parser.XMLParser;
+
 public class ApplicationWindow extends JFrame {
 	// overview: An ApplicationWindow is a top level program window that
 	// contains a toolbar and an animation window.
@@ -48,7 +51,7 @@ public class ApplicationWindow extends JFrame {
 		//Lay out the content pane.
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout());
-		contentPane.setPreferredSize(new Dimension(screenSize+10, screenSize+30));
+		contentPane.setPreferredSize(new Dimension(screenSize, screenSize+32));
 		
 		contentPane.add(toolBar, BorderLayout.NORTH);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
@@ -85,7 +88,30 @@ public class ApplicationWindow extends JFrame {
 		button.setToolTipText("Load XML File");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//System.exit(0);
+				
+				boolean valid = false;
+				
+				while (!valid){
+					// User selects new file
+					final XMLFileChooser fc = new XMLFileChooser();
+					fc.showOpenDialog(null);
+
+					String loc = fc.getSelectedFile().getAbsolutePath();
+					System.out.println(loc);
+
+					//String loc = "src\\xmls\\CezmiPrototype3.xml";
+					XMLParser parser = new XMLParser(loc);
+					valid = parser.validateXMLFile();
+
+					if (valid){
+						boolean secondCheck = parser.parseXMLFile();
+						if (!secondCheck){
+							valid = false;
+						} else {
+							animationWindow.repaint();
+						}
+					}
+				}
 			}
 		});
 		toolBar.add(button);

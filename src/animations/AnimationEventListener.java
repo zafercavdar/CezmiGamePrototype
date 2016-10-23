@@ -66,17 +66,17 @@ implements MouseMotionListener, KeyListener, ActionListener
 		// effects: causes the ball to move and the window to be updated
 		//          to show the new position of the ball.
 
-		Rectangle oldPosBall = Game.ball.boundingBox();
+		//Rectangle oldPosBall = Game.ball.boundingBox();
 
 		Game.ball.move();              // make changes to the logical animation state
 		
-		Rectangle oldPosCezmi = Game.cezmi.prevBoundingbox;
-		Rectangle posCezmi = Game.cezmi.boundingBox();
+		//Rectangle oldPosCezmi = Game.cezmi.prevBoundingbox;
+		//Rectangle posCezmi = Game.cezmi.boundingBox();
 		
-		Rectangle repaintArea2 = posCezmi.union(oldPosCezmi);
-		Rectangle repaintArea = oldPosBall.union(Game.ball.boundingBox());
+		//Rectangle repaintArea2 = posCezmi.union(oldPosCezmi);
+		//Rectangle repaintArea = oldPosBall.union(Game.ball.boundingBox());
 		
-		repaintArea = repaintArea.union(repaintArea2);
+		//repaintArea = repaintArea.union(repaintArea2);
 
 		// Have Swing tell the AnimationWindow to run its paint()
 		// method.  One could also call repaint(), but this would
@@ -84,9 +84,10 @@ implements MouseMotionListener, KeyListener, ActionListener
 		// has changed.
 
 		//Game.ball.paint();
-		animationWindows.repaint(repaintArea.x,
+		animationWindows.repaint();
+		/*animationWindows.repaint(repaintArea.x,
 				repaintArea.y,
 				repaintArea.width,
-				repaintArea.height);
+				repaintArea.height);*/
 	}
 }
