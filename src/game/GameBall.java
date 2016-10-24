@@ -24,7 +24,8 @@ public class GameBall {
 
 	public GameBall(){
 		this.xVelocity = (Math.random() * 12) - 6;
-		this.yVelocity = -(Math.random() * 6);
+		this.xVelocity = Math.round(xVelocity * 100) / 100.0;
+		this.yVelocity = Math.round(-(Math.random() * 600)) / 100.0;
 		System.out.println(xVelocity + " , " + yVelocity);
 	}
 

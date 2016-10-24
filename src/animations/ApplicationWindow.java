@@ -122,6 +122,7 @@ public class ApplicationWindow extends JFrame {
 							valid = false;
 						} else {
 							animationWindow.setEditMode(false);
+							animationWindow.setMode(false);
 							run.setEnabled(true);
 							animationWindow.repaint();
 						}
