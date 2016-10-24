@@ -19,6 +19,7 @@ public class AnimationWindow extends JPanel {
 	//private BouncingBall ball;
 	private Timer timer;
 	private boolean mode;
+	private boolean editMode;
 	public static int frameRate = 100;
 
 	public AnimationWindow() {
@@ -37,6 +38,7 @@ public class AnimationWindow extends JPanel {
 		// should call us back.  50 milliseconds = 20 frames/second
 		timer = new Timer(1000 / frameRate, eventListener);
 		mode = false;
+		editMode = false;
 	}
 
 	// This is just here so that we can accept the keyboard focus
@@ -56,6 +58,11 @@ public class AnimationWindow extends JPanel {
 		}
 		Game.cezmi.paint(g);
 
+	}
+	
+	public void setEditMode(boolean m){
+		
+		
 	}
 
 	public void setMode(boolean m) {

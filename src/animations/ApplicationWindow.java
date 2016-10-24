@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 
+import game.Game;
 import parser.XMLFileChooser;
 import parser.XMLParser;
 import parser.XMLSaver;
@@ -59,35 +60,45 @@ public class ApplicationWindow extends JFrame {
 		setContentPane(contentPane);
 	}
 
+	JButton run = null;
+	JButton stop = null;
+	JButton load = null;
+	JButton save = null;
+	JButton edit = null;
+	JButton quit = null;
+
 	protected void addButtons(JToolBar toolBar) {
 		// modifies: toolBar
 		// effects: adds Run, Stop and Quit buttons to toolBar
 
-		JButton button = null;
-
-		button = new JButton("Run");
-		button.setToolTipText("Start the animation");
+		run = new JButton("Run");
+		run.setToolTipText("Start the animation");
 		// when this button is pushed it calls animationWindow.setMode(true)
-		button.addActionListener(new ActionListener() {
+		run.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				animationWindow.setMode(true);
+				run.setEnabled(false);
+				stop.setEnabled(true);
 			}
 		});
-		toolBar.add(button);
+		toolBar.add(run);
 
-		button = new JButton("Stop");
-		button.setToolTipText("Stop the animation");
+		stop = new JButton("Stop");
+		stop.setToolTipText("Stop the animation");
+		stop.setEnabled(false);
 		// when this button is pushed it calls animationWindow.setMode(false)
-		button.addActionListener(new ActionListener() {
+		stop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				animationWindow.setMode(false);
+				stop.setEnabled(false);
+				run.setEnabled(true);
 			}
 		});
-		toolBar.add(button);
+		toolBar.add(stop);
 
-		button = new JButton("Load XML");
-		button.setToolTipText("Load XML File");
-		button.addActionListener(new ActionListener() {
+		load = new JButton("Load XML");
+		load.setToolTipText("Load XML File");
+		load.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				boolean valid = false;
@@ -115,36 +126,45 @@ public class ApplicationWindow extends JFrame {
 				}
 			}
 		});
-		toolBar.add(button);
+		toolBar.add(load);
 
-		button = new JButton("Save as XML");
-		button.setToolTipText("Save as XML File");
-		button.addActionListener(new ActionListener() {
+		save = new JButton("Save as XML");
+		save.setToolTipText("Save as XML File");
+		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				XMLSaver xmlSaver = new XMLSaver();
 				xmlSaver.save();
 			}
 		});
-		toolBar.add(button);
+		toolBar.add(save);
 
-		button = new JButton("Edit Mode");
-		button.setToolTipText("Opens creative Edit Mode");
-		button.addActionListener(new ActionListener() {
+		edit = new JButton("Edit Mode");
+		edit.setToolTipText("Opens creative Edit Mode");
+		edit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//System.exit(0);
+				
+				if (edit.getText() != "Finish"){
+					edit.setText("Finish");
+					animationWindow.setMode(false);
+					Game.takozlar.clear();
+					animationWindow.repaint();
+					animationWindow.setEditMode(true);
+				} else {
+					edit.setText("Edit Mode");
+					animationWindow.setEditMode(false);
+				}
 			}
 		});
-		toolBar.add(button);
+		toolBar.add(edit);
 
-		button = new JButton("Quit");
-		button.setToolTipText("Quit the program");
-		button.addActionListener(new ActionListener() {
+		quit = new JButton("Quit");
+		quit.setToolTipText("Quit the program");
+		quit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		toolBar.add(button);
-
+		toolBar.add(quit);
 
 	}
 }
