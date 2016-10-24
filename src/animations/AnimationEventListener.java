@@ -14,6 +14,7 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JPanel;
 
 import game.Game;
+import game.GameTakoz;
 
 public class AnimationEventListener extends MouseAdapter
 implements MouseMotionListener, KeyListener, ActionListener
@@ -38,6 +39,26 @@ implements MouseMotionListener, KeyListener, ActionListener
 	}
 
 	public void mouseClicked(MouseEvent e) {
+		int L = ApplicationWindow.screenSize / 20;
+		int x = e.getX() / L;
+		int y = e.getY() / L;
+		
+		boolean intersects = false;
+		
+		for (GameTakoz takoz: Game.takozlar){
+			if (takoz.getX() == x && takoz.getY() == y){
+				intersects = true;
+				Game.takozlar.remove(takoz);
+				animationWindows.repaint();
+				break;
+			}
+		}
+		
+		if (!intersects){
+			GameTakoz newTakoz = new GameTakoz(x, y);
+			Game.takozlar.add(newTakoz);
+			animationWindows.repaint();
+		}
 		
 	}
 

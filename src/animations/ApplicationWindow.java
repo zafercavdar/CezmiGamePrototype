@@ -33,6 +33,7 @@ public class ApplicationWindow extends JFrame {
 
 		// Title bar
 		super("CezmiGame Prototype Program");
+		this.setResizable(false);
 
 		// respond to the window system asking us to quit
 		addWindowListener(new WindowAdapter() {
@@ -120,6 +121,8 @@ public class ApplicationWindow extends JFrame {
 						if (!secondCheck){
 							valid = false;
 						} else {
+							animationWindow.setEditMode(false);
+							run.setEnabled(true);
 							animationWindow.repaint();
 						}
 					}
@@ -134,6 +137,9 @@ public class ApplicationWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				XMLSaver xmlSaver = new XMLSaver();
 				xmlSaver.save();
+				load.setEnabled(true);
+				edit.setText("Edit Mode");
+				animationWindow.setEditMode(false);
 			}
 		});
 		toolBar.add(save);
@@ -143,14 +149,21 @@ public class ApplicationWindow extends JFrame {
 		edit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (edit.getText() != "Finish"){
-					edit.setText("Finish");
+				if (edit.getText() != "Cancel"){
+					edit.setText("Cancel");
 					animationWindow.setMode(false);
 					Game.takozlar.clear();
+					Game.cezmi = null;
+					Game.ball = null;
+					run.setEnabled(false);
+					stop.setEnabled(false);
+					load.setEnabled(false);
+					
 					animationWindow.repaint();
 					animationWindow.setEditMode(true);
 				} else {
 					edit.setText("Edit Mode");
+					load.setEnabled(true);
 					animationWindow.setEditMode(false);
 				}
 			}

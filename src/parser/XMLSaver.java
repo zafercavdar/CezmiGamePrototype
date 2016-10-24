@@ -33,18 +33,23 @@ public class XMLSaver {
 			Element rootElement = doc.createElement("board");
 			doc.appendChild(rootElement);
 
-			Element ball = doc.createElement("ball");
-			rootElement.appendChild(ball);
-			Element cezmi = doc.createElement("cezmi");
-			rootElement.appendChild(cezmi);
 			Element gizmos = doc.createElement("gizmos");
 			rootElement.appendChild(gizmos);
 
-			ball.setAttribute("xVelocity", Game.ball.getxVelocity() + "");
-			ball.setAttribute("yVelocity", Game.ball.getyVelocity()+ "");
-			cezmi.setAttribute("x", Game.cezmi.getX()+ "");
-			cezmi.setAttribute("score", Game.cezmi.getScore()+ "");
-
+			if (Game.ball != null){
+				Element ball = doc.createElement("ball");
+				rootElement.appendChild(ball);
+				ball.setAttribute("xVelocity", Game.ball.getxVelocity() + "");
+				ball.setAttribute("yVelocity", Game.ball.getyVelocity()+ "");
+			} 
+			
+			if (Game.cezmi != null){
+				Element cezmi = doc.createElement("cezmi");
+				rootElement.appendChild(cezmi);
+				cezmi.setAttribute("x", Game.cezmi.getX()+ "");
+				cezmi.setAttribute("score", Game.cezmi.getScore()+ "");
+			}
+			
 			for(GameTakoz takoz: Game.takozlar){
 				Element eTakoz = doc.createElement("takoz");
 				eTakoz.setAttribute("x", takoz.getX()+ "");

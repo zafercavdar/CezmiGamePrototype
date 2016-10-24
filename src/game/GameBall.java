@@ -5,6 +5,8 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
 
 import animations.AnimationWindow;
 import animations.ApplicationWindow;
+import physics.Geometry;
+import physics.Vect;
 
 public class GameBall {
 	private int screenSize = 20;
@@ -114,8 +116,13 @@ public class GameBall {
 	
 	public  void checkCezmiCollision(){
 		if (Game.cezmi.intersects(x + radius, y + radius, radius)){
-			xVelocity *= -1;
-			yVelocity *= -1;
+			Vect cezmiVector = new Vect(Game.cezmi.getX() + Game.cezmi.getRadius(), Game.cezmi.getY() + Game.cezmi.getRadius());
+			Vect ballVector = new Vect(x + radius, y + radius);
+			Vect velocityVector = new Vect(xVelocity, yVelocity);
+			Vect finalVelocityVector = Geometry.reflectCircle(cezmiVector, ballVector, velocityVector);
+			
+			xVelocity = finalVelocityVector.x();
+			yVelocity = finalVelocityVector.y();
 		}
 	}
 

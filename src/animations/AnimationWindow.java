@@ -52,16 +52,33 @@ public class AnimationWindow extends JPanel {
 		// first repaint the proper background color (controlled by
 		// the windowing system)
 		super.paint(g);
-		Game.ball.paint(g);
+		if (Game.ball != null)
+			Game.ball.paint(g);
 		for (GameTakoz takoz :Game.takozlar){
 			takoz.paint(g);
 		}
-		Game.cezmi.paint(g);
+		if (Game.cezmi != null)
+			Game.cezmi.paint(g);
 
 	}
 	
 	public void setEditMode(boolean m){
 		
+		if (editMode == true){
+			removeMouseListener(eventListener);
+			removeMouseMotionListener(eventListener);
+			removeKeyListener(eventListener);
+		}
+		
+		editMode = m;
+		
+		if (editMode == true){
+			addMouseListener(eventListener);
+			addMouseMotionListener(eventListener);
+		} else {
+			removeMouseListener(eventListener);
+			removeMouseMotionListener(eventListener);
+		}
 		
 	}
 
@@ -80,8 +97,8 @@ public class AnimationWindow extends JPanel {
 
 		if (mode == true) {
 			// the mode is true: turn on the listeners
-			addMouseListener(eventListener);
-			addMouseMotionListener(eventListener);
+			//addMouseListener(eventListener);
+			//addMouseMotionListener(eventListener);
 			addKeyListener(eventListener);
 			requestFocus();           // make sure keyboard is directed to us
 			timer.start();

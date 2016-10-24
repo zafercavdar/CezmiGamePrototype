@@ -65,6 +65,7 @@ public class XMLParser {
 					validator.validate(new DOMSource(document));
 				} catch (SAXException e) {
 					// instance document is invalid!
+					e.printStackTrace();
 					isFailed = true;
 				}
 			} catch (SAXException | IOException e) {

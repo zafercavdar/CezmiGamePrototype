@@ -10,6 +10,10 @@ public class Cezmi {
 	private Color bodyColor = new Color(123,123,123);
 	private double radius = 1; 
 	
+	public double getRadius() {
+		return radius;
+	}
+
 	private Color color = new Color(24, 242, 247);
 	private int screenSize = 20;
 	private int L = ApplicationWindow.screenSize / 20;
