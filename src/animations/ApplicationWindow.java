@@ -16,6 +16,7 @@ import javax.swing.JToolBar;
 
 import parser.XMLFileChooser;
 import parser.XMLParser;
+import parser.XMLSaver;
 
 public class ApplicationWindow extends JFrame {
 	// overview: An ApplicationWindow is a top level program window that
@@ -31,7 +32,7 @@ public class ApplicationWindow extends JFrame {
 
 		// Title bar
 		super("CezmiGame Prototype Program");
-		
+
 		// respond to the window system asking us to quit
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -52,7 +53,7 @@ public class ApplicationWindow extends JFrame {
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout());
 		contentPane.setPreferredSize(new Dimension(screenSize, screenSize+32));
-		
+
 		contentPane.add(toolBar, BorderLayout.NORTH);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		setContentPane(contentPane);
@@ -83,14 +84,14 @@ public class ApplicationWindow extends JFrame {
 			}
 		});
 		toolBar.add(button);
-		
+
 		button = new JButton("Load XML");
 		button.setToolTipText("Load XML File");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				boolean valid = false;
-				
+
 				while (!valid){
 					// User selects new file
 					final XMLFileChooser fc = new XMLFileChooser();
@@ -115,9 +116,19 @@ public class ApplicationWindow extends JFrame {
 			}
 		});
 		toolBar.add(button);
-		
+
 		button = new JButton("Save as XML");
 		button.setToolTipText("Save as XML File");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				XMLSaver xmlSaver = new XMLSaver();
+				xmlSaver.save();
+			}
+		});
+		toolBar.add(button);
+
+		button = new JButton("Edit Mode");
+		button.setToolTipText("Opens creative Edit Mode");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//System.exit(0);
@@ -133,8 +144,8 @@ public class ApplicationWindow extends JFrame {
 			}
 		});
 		toolBar.add(button);
-		
-		
+
+
 	}
 }
 

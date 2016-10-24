@@ -16,7 +16,6 @@ public class Game {
 		boolean valid = false;
 
 		while (!valid){
-			// User selects new file
 			final XMLFileChooser fc = new XMLFileChooser();
 			fc.showOpenDialog(null);
 
@@ -29,7 +28,7 @@ public class Game {
 
 			if (valid){
 				boolean secondCheck = parser.parseXMLFile();
-				
+
 				if (secondCheck){
 					ApplicationWindow frame = new ApplicationWindow();
 					// the following code realizes the top level application window
