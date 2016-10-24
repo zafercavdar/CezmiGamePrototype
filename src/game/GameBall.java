@@ -12,7 +12,7 @@ public class GameBall {
 	private int screenSize = 20;
 	private double radius = 0.25;
 	
-	private double x = screenSize/2 - 2*radius;
+	private double x = screenSize/2 - radius;
 	private double y = screenSize - 2*radius;
 	private double xVelocity;
 	private double yVelocity;
@@ -110,6 +110,7 @@ public class GameBall {
 				} else {
 					System.out.println("takoz collision");
 				}
+				break;
 			}
 		}
 	}

@@ -26,7 +26,13 @@ public class Cezmi {
 	public Cezmi(){
 		super();
 		//random olmasý lazým
-		this.x = 12;
+		this.x = 9;
+		while (x>= 8 && x<= 10){
+			this.x = (int)(Math.random() * 19);
+			if (x == 19){
+				x = 18;
+			}
+		}
 	}
 
 	public Cezmi(int x, int score) {
