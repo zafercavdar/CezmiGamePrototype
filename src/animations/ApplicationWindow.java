@@ -53,7 +53,7 @@ public class ApplicationWindow extends JFrame {
 		//Lay out the content pane.
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout());
-		contentPane.setPreferredSize(new Dimension(screenSize, screenSize + 32));
+		contentPane.setPreferredSize(new Dimension(screenSize + 4, screenSize + 32));
 
 		contentPane.add(toolBar, BorderLayout.NORTH);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
@@ -139,7 +139,9 @@ public class ApplicationWindow extends JFrame {
 				xmlSaver.save();
 				load.setEnabled(true);
 				edit.setText("Edit Mode");
-				animationWindow.setEditMode(false);
+				if (edit.getText() == "Cancel"){
+					animationWindow.setEditMode(false);
+				}
 			}
 		});
 		toolBar.add(save);
