@@ -16,16 +16,17 @@ public class GameBall {
 	private double y = screenSize - 2*radius;
 	private double xVelocity;
 	private double yVelocity;
+	private boolean insideTheTakoz = false;
+	private int forbidCount = 4;
+	private boolean ohal = false;
 
-	
 	private Color color = new Color(128, 0, 128);
 	
 	private int L = ApplicationWindow.screenSize / 20;
 
 	public GameBall(){
-		this.xVelocity = (Math.random() * 12) - 6;
-		this.xVelocity = Math.round(xVelocity * 100) / 100.0;
-		this.yVelocity = Math.round(-(Math.random() * 600)) / 100.0;
+		this.xVelocity = Math.round((Math.random() * 100)) / 100.0 + 2.0;
+		this.yVelocity = Math.round(-(Math.random() * 100)) / 100.0 - 2.0;
 		System.out.println(xVelocity + " , " + yVelocity);
 	}
 
@@ -39,7 +40,23 @@ public class GameBall {
 
 		double rate = AnimationWindow.frameRate;
 		
-		checkTakozCollision();
+		if (insideTheTakoz){
+			insideTheTakoz = false;
+			forbidCount = 4;
+			ohal = true;
+		}
+		
+		if (ohal && forbidCount > 0){
+			forbidCount--;
+		} else {
+			ohal = false;
+			forbidCount = 4;
+		}
+		
+		if (!ohal){
+			checkTakozCollision();
+		}
+		
 		checkCezmiCollision();
 		
 		if (x + xVelocity/rate <= 0) {
@@ -98,22 +115,25 @@ public class GameBall {
 			double distanceY = this.y + radius - closestY;
 			double distance = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
 			if (distance <= radius){
+				insideTheTakoz = true;
 				if (takozRightX - this.x < sensitivity){
-					System.out.println("Saðda");
+					System.out.println("Hit the takoz from RIGHT");
 					xVelocity *= -1;
 				} else if ((this.x + 2*radius) - takozLeftX < sensitivity){
-					System.out.println("Solda");
+					System.out.println("Hit the takoz from LEFT");
 					xVelocity *= -1;
 				} else if ((this.y + 2*radius) - takozTopY < sensitivity){
-					System.out.println("Üstte");
+					System.out.println("Hit the takoz from TOP");
 					yVelocity *= -1;
 				} else if (takozBottomY - this.y < sensitivity){
-					System.out.println("Altta");
+					System.out.println("Hit the takoz from BOTTOM");
 					yVelocity *= -1;
 				} else {
-					System.out.println("unexpected takoz collision");
+					System.out.println("Unexpected takoz collision");
 				}
 				break;
+			} else {
+				insideTheTakoz = false;
 			}
 		}
 	}

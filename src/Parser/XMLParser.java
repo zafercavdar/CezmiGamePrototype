@@ -4,6 +4,7 @@ import org.xml.sax.SAXException;
 
 import game.*;
 
+import javax.swing.JOptionPane;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.*;
 import javax.xml.transform.Source;
@@ -66,15 +67,18 @@ public class XMLParser {
 					// instance document is invalid!
 					e.printStackTrace();
 					isFailed = true;
+					alertUser(e.getLocalizedMessage());
 				}
 			} catch (SAXException | IOException e) {
 				e.printStackTrace();
 				isFailed = true;
+				alertUser(e.getLocalizedMessage());
 			}
 
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 			isFailed = true;
+			alertUser(e.getLocalizedMessage());
 		}
 
 		validated = true;
@@ -183,7 +187,6 @@ public class XMLParser {
 				} else {
 					GameTakoz gameTakoz = new GameTakoz(x, y);
 					Game.takozlar.add(gameTakoz);
-					//System.out.println("x: " + x + " y: " + y );
 				}
 			}
 		} else {
@@ -193,7 +196,7 @@ public class XMLParser {
 		return result;
 	}
 
-	public boolean isSuccessfull(){
-		return !isFailed;
+	public void alertUser(String e){
+		JOptionPane.showMessageDialog(null, e + "\nInvalid XML File. Choose another one.");
 	}
 }
