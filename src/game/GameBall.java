@@ -82,7 +82,8 @@ public class GameBall {
 	}
 	
 	public void checkTakozCollision(){
-		double sensitivity = 0.05;
+		double sensitivity = /*(Math.min(Math.abs(xVelocity),Math.abs(yVelocity))) / AnimationWindow.frameRate*/ 0.08;
+		//System.out.println(sensitivity);
 		
 		for (GameTakoz takoz: Game.takozlar){
 			double takozLeftX = takoz.getX();
@@ -109,7 +110,7 @@ public class GameBall {
 					System.out.println("Altta");
 					yVelocity *= -1;
 				} else {
-					System.out.println("takoz collision");
+					System.out.println("unexpected takoz collision");
 				}
 				break;
 			}

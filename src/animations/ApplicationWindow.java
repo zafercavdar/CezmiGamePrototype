@@ -23,7 +23,7 @@ public class ApplicationWindow extends JFrame {
 	// overview: An ApplicationWindow is a top level program window that
 	// contains a toolbar and an animation window.
 
-	public static int screenSize = 600;
+	public static int screenSize = 400;
 
 	protected AnimationWindow animationWindow;
 
