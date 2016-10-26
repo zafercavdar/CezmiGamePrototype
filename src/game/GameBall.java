@@ -70,6 +70,8 @@ public class GameBall {
 	
 	// This code contains some code from: 
 	// http://stackoverflow.com/questions/401847/circle-rectangle-collision-detection-intersection
+	// The technique used to find the closest point of any square to the center of a circle is adapted from above link.
+	// Clamp method is used as helper method.
 	
 	private double clamp(double value, double min, double max){
 		if (value <= min){
@@ -83,7 +85,6 @@ public class GameBall {
 	
 	public void checkTakozCollision(){
 		double sensitivity = /*(Math.min(Math.abs(xVelocity),Math.abs(yVelocity))) / AnimationWindow.frameRate*/ 0.08;
-		//System.out.println(sensitivity);
 		
 		for (GameTakoz takoz: Game.takozlar){
 			double takozLeftX = takoz.getX();
@@ -130,12 +131,7 @@ public class GameBall {
 	}
 
 	public void paint(Graphics g) {
-		// modifies: the Graphics object <g>.
-		// effects: paints a circle on <g> reflecting the current position
-		// of the ball.
 
-		// the "clip rectangle" is the area of the screen that needs to be
-		// modified
 		Rectangle clipRect = g.getClipBounds();
 
 		// For this tiny program, testing whether we need to redraw is
@@ -148,11 +144,6 @@ public class GameBall {
 	}
 
 	public Rectangle boundingBox() {
-		// effect: Returns the smallest rectangle that completely covers the
-		//         current position of the ball.
-
-		// a Rectangle is the x,y for the upper left corner and then the
-		// width and height
 		return new Rectangle((int)((x)*L), (int) ((y)*L), (int) ((2*radius)*L+1), (int)((2*radius)*L+1));
 	}
 

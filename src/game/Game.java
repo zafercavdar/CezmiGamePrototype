@@ -31,7 +31,6 @@ public class Game {
 
 				if (secondCheck){
 					ApplicationWindow frame = new ApplicationWindow();
-					// the following code realizes the top level application window
 					frame.pack();
 					frame.setVisible(true);
 				} else {

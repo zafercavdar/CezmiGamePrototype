@@ -23,6 +23,8 @@ public class XMLSaver {
 
 	// This part contains some codes from:
 	// http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
+	// I used the article above to understand how to create an XML file with transforming a tree.
+	// Most of the method codes are written by me (except of first and last few lines).
 
 	public void save(){
 		try {

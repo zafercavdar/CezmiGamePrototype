@@ -21,9 +21,6 @@ public class XMLParser {
 	private boolean isFailed = false;
 	private boolean validated = false;
 
-	// This method contains some codes from:
-	// https://www.tutorialspoint.com/java_xml/java_dom_parse_document.htm
-
 	enum Constants {
 		TAKOZ("takoz"), BALL("ball"), GIZMOS("gizmos"), CEZMI("cezmi");
 
@@ -44,6 +41,8 @@ public class XMLParser {
 
 	// This part contains some codes from:
 	// http://docs.oracle.com/javase/7/docs/api/javax/xml/validation/package-summary.html
+	// The try part of the code is taken from above Oracle documentation.
+	
 	public boolean validateXMLFile(){
 		try {
 			// parse an XML document into a DOM tree
@@ -87,6 +86,11 @@ public class XMLParser {
 		return !isFailed;
 	}
 
+	// This method contains some codes from:
+	// https://www.tutorialspoint.com/java_xml/java_dom_parse_document.htm
+	// I used article above to understand implementation techniques behind parsing an XML File.
+	// Most of the method codes are written by me (except of first few lines).
+	
 	public boolean parseXMLFile(){
 
 		boolean result = true;
@@ -111,8 +115,6 @@ public class XMLParser {
 			}
 
 			doc.getDocumentElement().normalize();
-			//System.out.println("Root element : " + doc.getDocumentElement().getNodeName());
-
 
 			NodeList balls = doc.getElementsByTagName("ball");
 			Node ball = null;

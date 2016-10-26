@@ -1,8 +1,5 @@
 package animations;
 
-
-import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -19,7 +16,7 @@ import game.GameTakoz;
 public class AnimationEventListener extends MouseAdapter
 implements MouseMotionListener, KeyListener, ActionListener
 {
-	// overview: AnimationEventListener is an inner class that
+	// overview: AnimationEventListener is a class that
 	// responds to all sorts of external events, and provides the
 	// required semantic operations for our particular program.  It
 	// owns, and sends semantic actions to the ball and window of the
@@ -28,8 +25,6 @@ implements MouseMotionListener, KeyListener, ActionListener
 	// MouseAdapter gives us empty methods for the MouseListener
 	// interface: mouseClicked, mouseEntered, mouseExited, mousePressed,
 	// and mouseReleased.
-
-	// for this example we only need to override mouseClicked
 
 	private JPanel animationWindows = null;
 
@@ -67,6 +62,8 @@ implements MouseMotionListener, KeyListener, ActionListener
 	public void mouseMoved(MouseEvent e) { }
 
 	// Here's the KeyListener interface
+	// Controls Cezmi's movements
+	
 	public void keyPressed(KeyEvent e) {
 		
 		int keynum = e.getKeyCode();
@@ -83,9 +80,6 @@ implements MouseMotionListener, KeyListener, ActionListener
 
 	// this is the callback for the timer
 	public void actionPerformed(ActionEvent e) {
-		// modifes: both the ball and the window that this listener owns
-		// effects: causes the ball to move and the window to be updated
-		//          to show the new position of the ball.
 
 		//Rectangle oldPosBall = Game.ball.boundingBox();
 

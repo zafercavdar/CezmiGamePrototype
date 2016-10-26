@@ -29,13 +29,12 @@ public class AnimationWindow extends JPanel {
 		this.setOpaque(true);
 		this.setBackground(Color.BLACK);
 
-		//ball = new BouncingBall();
-
 		// this only initializes the timer, we actually start and stop the
 		// timer in the setMode() method
 		eventListener = new AnimationEventListener(this);
 		// The first parameter is how often (in milliseconds) the timer
-		// should call us back.  50 milliseconds = 20 frames/second
+		// should call us back.
+		
 		timer = new Timer(1000 / frameRate, eventListener);
 		mode = false;
 		editMode = false;
@@ -83,8 +82,6 @@ public class AnimationWindow extends JPanel {
 	}
 
 	public void setMode(boolean m) {
-		// modifies: this
-		// effects: changes the mode to <m>.
 
 		if (mode == true) {
 			// we're about to change mode: turn off all the old listeners

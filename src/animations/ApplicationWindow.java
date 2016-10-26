@@ -1,7 +1,6 @@
 package animations;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,7 +53,7 @@ public class ApplicationWindow extends JFrame {
 		//Lay out the content pane.
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout());
-		contentPane.setPreferredSize(new Dimension(screenSize, screenSize+32));
+		contentPane.setPreferredSize(new Dimension(screenSize, screenSize + 32));
 
 		contentPane.add(toolBar, BorderLayout.NORTH);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
@@ -75,6 +74,7 @@ public class ApplicationWindow extends JFrame {
 		run = new JButton("Run");
 		run.setToolTipText("Start the animation");
 		// when this button is pushed it calls animationWindow.setMode(true)
+
 		run.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				animationWindow.setMode(true);
@@ -112,7 +112,6 @@ public class ApplicationWindow extends JFrame {
 					String loc = fc.getSelectedFile().getAbsolutePath();
 					System.out.println(loc);
 
-					//String loc = "src\\xmls\\CezmiPrototype3.xml";
 					XMLParser parser = new XMLParser(loc);
 					valid = parser.validateXMLFile();
 
@@ -149,7 +148,7 @@ public class ApplicationWindow extends JFrame {
 		edit.setToolTipText("Opens creative Edit Mode");
 		edit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				if (edit.getText() != "Cancel"){
 					edit.setText("Cancel");
 					animationWindow.setMode(false);
@@ -159,7 +158,7 @@ public class ApplicationWindow extends JFrame {
 					run.setEnabled(false);
 					stop.setEnabled(false);
 					load.setEnabled(false);
-					
+
 					animationWindow.repaint();
 					animationWindow.setEditMode(true);
 				} else {

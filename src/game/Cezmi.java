@@ -7,7 +7,6 @@ import animations.ApplicationWindow;
 
 public class Cezmi {
 
-	private Color bodyColor = new Color(123,123,123);
 	private double radius = 1; 
 	
 	public double getRadius() {
@@ -25,7 +24,6 @@ public class Cezmi {
 	
 	public Cezmi(){
 		super();
-		//random olmasý lazým
 		this.x = 9;
 		while (x>= 8 && x<= 10){
 			this.x = (int)(Math.random() * 19);
